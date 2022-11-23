@@ -14,16 +14,16 @@ FROM openjdk:17.0-slim
 WORKDIR /app
 
 # 빌더 이미지에서 jar 파일만 복사
-COPY --from=builder /build/build/libs/*-SNAPSHOT.jar ./app.jar
+COPY --from=builder /build/build/libs/exercise-0.0.1-SNAPSHOT.jar .
 
 EXPOSE 8080
 
 # root 대신 nobody 권한으로 실행
 USER nobody
 ENTRYPOINT [                                                \
-    "java",                                                 \
-    "-jar",                                                 \
-    "-Djava.security.egd=file:/dev/./urandom",              \
-    "-Dsun.net.inetaddr.ttl=0",                             \
-    "app.jar"              \
+   "java",                                                 \
+   "-jar",                                                 \
+   "-Djava.security.egd=file:/dev/./urandom",              \
+   "-Dsun.net.inetaddr.ttl=0",                             \
+   "exercise-0.0.1-SNAPSHOT.jar"              \
 ]
